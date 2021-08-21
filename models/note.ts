@@ -13,7 +13,7 @@ class Note {
       {
         title: 'Note Title',
         content: 'Note Content',
-        author: 'Enmanuel'
+        author: 1
       }
     ];
     return callback(null, notes);
@@ -33,14 +33,14 @@ class Note {
         .doc(note.noteId)
         .set(note)
         .then(() => cb(null, note))
-        .catch(err => cb({
+        .catch(error => cb({
+          error,
           status: 500,
-          error: err,
           message: 'Error adding note'
         }))
-    ], (err, result) => {
-      if (err) {
-        return callback(err);
+    ], (error, result) => {
+      if (error) {
+        return callback(error);
       }
       return callback(null, result);
     });
