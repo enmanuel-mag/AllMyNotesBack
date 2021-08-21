@@ -1,4 +1,6 @@
-import { Callback } from '../interfaces'
+import { Callback } from '../interfaces';
+
+import db from '../database'
 
 class Note {
 
