@@ -1,3 +1,4 @@
+import * as yup from 'yup';
 import async from 'async';
 import firebase from 'firebase';
 import { v4 as uuid } from 'uuid';
@@ -6,6 +7,14 @@ import db from '../database';
 import { Callback } from '../interfaces';
 
 class Note {
+
+  static schema = yup.object().shape({
+    title: yup.string().required(),
+    authorId : yup.number().required(),
+    content: yup.string().required(),
+    tags: yup.array().of(yup.string()).required(),
+    shared : yup.array().of(yup.number()).required()
+  });
 
   static get(params: any, callback: Callback) {
     console.log('Params:', params);
@@ -19,7 +28,7 @@ class Note {
     return callback(null, notes);
   }
 
-  static add(note: any, callback: Callback) {
+  static create(note: any, callback: Callback) {
     note = {
       ...note,
       noteId: uuid(),
