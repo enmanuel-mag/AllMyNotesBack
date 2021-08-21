@@ -1,4 +1,4 @@
-## All My Notes Backend
+# All My Notes Backend
 
 This repository contains the backend code for the All My Notes application.
 
