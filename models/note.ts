@@ -6,15 +6,17 @@ import { v4 as uuid } from 'uuid';
 import db from '../database';
 import { Callback } from '../interfaces';
 
-class Note {
-
-  static schema = yup.object().shape({
+export const schema = {
+  create: yup.object().shape({
     title: yup.string().required(),
     authorId : yup.number().required(),
     content: yup.string().required(),
     tags: yup.array().of(yup.string()).required(),
     shared : yup.array().of(yup.number()).required()
-  });
+  })
+};
+
+class Note {
 
   static get(params: any, callback: Callback) {
     console.log('Params:', params);

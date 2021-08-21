@@ -1,6 +1,6 @@
 import express from 'express';
 
-import Note from '../models/note';
+import Note, { schema as NoteSchema } from '../models/note';
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 //Upload new note
-router.post('/', (req, res) => Note.schema.validate(req.body)
+router.post('/', (req, res) => NoteSchema.create.validate(req.body)
   .then(() => Note.create(req.body, (err, note) => {
     if (err) {
       console.log(err);
