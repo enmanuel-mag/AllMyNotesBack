@@ -1,0 +1,13 @@
+apiKey: "AIzaSyD3yOPa8VgOJF5Agzo9003cdzwKhaBgda4",
+
+    authDomain: "all-my-notes-s.firebaseapp.com",
+
+    projectId: "all-my-notes-s",
+
+    storageBucket: "all-my-notes-s.appspot.com",
+
+    messagingSenderId: "565375655912",
+
+    appId: "1:565375655912:web:031130b91440beb17c4e5d",
+
+    measurementId: "G-5N5KJR9T05"

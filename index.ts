@@ -1,11 +1,13 @@
 import dotenv from 'dotenv';
 import express from 'express';
 
-import api from './api'
+import api from './api';
 
 dotenv.config();
 
 const app = express();
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello world!');
