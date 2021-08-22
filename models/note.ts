@@ -10,6 +10,7 @@ export const schema = {
   create: yup.object().shape({
     title: yup.string().required(),
     authorId : yup.number().required(),
+    authorName : yup.string().required(),
     content: yup.string().required(),
     tags: yup.array().of(yup.string()).required(),
     shared : yup.array().of(yup.number()).required()
