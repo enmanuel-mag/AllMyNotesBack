@@ -14,6 +14,9 @@ export const schema = {
     content: yup.string().required(),
     tags: yup.array().of(yup.string()).required(),
     shared : yup.array().of(yup.number()).required()
+  }),
+  delete: yup.object().shape({
+    delete: yup.boolean().required()
   })
 };
 
@@ -21,14 +24,28 @@ class Note {
 
   static get(params: any, callback: Callback) {
     console.log('Params:', params);
-    const notes = [
-      {
-        title: 'Note Title',
-        content: 'Note Content',
-        author: 1
+    return async.waterfall([
+      (cb: Callback) => db
+        .collection('notes')
+        .get()
+        .then((querySnapshot) => {
+          const data: Array<any> = [];
+          querySnapshot.forEach((doc)=>{
+            data.push(doc.data());
+          });
+          cb(null, data);
+        })
+        .catch(error => cb({
+          error,
+          status: 500,
+          message: 'Error getting all notes'
+        }))
+    ], (error, result) => {
+      if (error) {
+        return callback(error);
       }
-    ];
-    return callback(null, notes);
+      return callback(null, result);
+    });
   }
 
   static create(note: any, callback: Callback) {
@@ -57,6 +74,7 @@ class Note {
       return callback(null, result);
     });
   }
+
 }
 
 export default Note;
