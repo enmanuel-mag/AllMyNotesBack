@@ -22,7 +22,7 @@ router.post('/', (req, res) => NoteSchema.create.validate(req.body)
       console.log(err);
       return res.status(err.status).json(err);
     }
-    return res.status(200).json({ note });
+    return res.status(200).json({ code: 'Ok', note });
   }))
   .catch((err) => res.status(400).json({
     type: 'Validation Error',
