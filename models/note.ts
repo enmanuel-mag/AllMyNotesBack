@@ -13,17 +13,21 @@ export const schema = {
     authorName : yup.string().required(),
     content: yup.string().required(),
     tags: yup.array().of(yup.string()).required(),
-    shared : yup.array().of(yup.number()).required()
+    shared : yup.array().of(yup.number()).required(),
   }),
-  delete: yup.object().shape({
-    delete: yup.boolean().required()
-  })
+  update: yup.object().shape({
+    title: yup.string(),
+    authorId : yup.number(),
+    authorName : yup.string(),
+    content: yup.string(),
+    tags: yup.array().of(yup.string()),
+    shared : yup.array().of(yup.number())
+  }),
 };
 
 class Note {
 
   static get(params: any, callback: Callback) {
-    console.log('Params:', params);
     return async.waterfall([
       (cb: Callback) => db
         .collection('notes')
@@ -75,6 +79,25 @@ class Note {
     });
   }
 
+  static async update(noteId: string, note: any) {
+    note = {
+      ...note,
+      updatedAt: firebase.firestore.Timestamp.now()
+    };
+    console.log('Note id: ', noteId);
+    console.log('Note update data: ', note);
+    let document = db.collection('notes').doc(noteId);
+    await document.update(note);
+    return (await document.get()).data();
+  }
+
+  static async delete(noteId: string) {
+    console.log('Note id: ', noteId);
+    let document = db.collection('notes').doc(noteId);
+    let deletedNote = await document.get();
+    await document.delete();
+    return deletedNote.data();
+  }
 }
 
 export default Note;
