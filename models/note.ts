@@ -13,7 +13,11 @@ export const schema = {
     authorName : yup.string().required(),
     content: yup.string().required(),
     tags: yup.array().of(yup.string()).required(),
-    shared : yup.array().of(yup.number()).required()
+    shared : yup.array().of(yup.number()).required(),
+    links : yup.array().of(yup.object().shape({
+      label : yup.string().required(),
+      url : yup.string().required()
+    })),
   }),
   delete: yup.object().shape({
     delete: yup.boolean().required()

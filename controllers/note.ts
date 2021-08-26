@@ -24,11 +24,14 @@ router.post('/', (req, res) => NoteSchema.create.validate(req.body)
     }
     return res.status(200).json({ code: 'Ok', note });
   }))
-  .catch((err) => res.status(400).json({
-    type: 'Validation Error',
-    errors: err.errors,
-    message: err.message
-  }))
+  .catch((err) => {
+    console.log(err);
+    return res.status(400).json({
+      type: 'Validation Error',
+      errors: err.errors,
+      message: err.message
+    });
+  })
 );
 
 //Update note (like, dislike, comment)
