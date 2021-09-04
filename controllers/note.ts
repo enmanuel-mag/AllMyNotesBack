@@ -1,3 +1,12 @@
+/*
+ * Created Date: Friday September 3rd 2021 9:53:44 pm
+ * Author: Andrés X. Vargas
+ * -----
+ * Last Modified: Friday September 3rd 2021 9:53:46 pm
+ * Modified By: the developer known as Andrés X. Vargas at <axvargas@fiec.espol.edu.ec>
+ * -----
+ * Copyright (c) 2021 MattuApps
+ */
 import express from 'express';
 
 import Note, { schema as NoteSchema } from '../models/note';
