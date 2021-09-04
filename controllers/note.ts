@@ -58,6 +58,7 @@ router.put("/:id", async (req, res) => {
 
 //Delete note
 router.delete("/:id", async (req, res) => {
+  // Test commit
   let noteId = req.params.id
   try {
     let deletedNote = await Note.delete(noteId);

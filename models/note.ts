@@ -100,6 +100,7 @@ class Note {
   }
 
   static async delete(noteId: string) {
+    // single comment to test a tool
     console.log('Note id: ', noteId);
     let document = db.collection('notes').doc(noteId);
     let deletedNote = await document.get();
