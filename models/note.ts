@@ -25,7 +25,11 @@ export const schema = {
     authorName: yup.string(),
     content: yup.string(),
     tags: yup.array().of(yup.string()),
-    shared: yup.array().of(yup.number())
+    shared : yup.array().of(yup.number()),
+    links : yup.array().of(yup.object().shape({
+      label : yup.string(),
+      url : yup.string()
+    })),
   }),
   get: yup.object().shape({
     admin: yup.boolean().required(),
