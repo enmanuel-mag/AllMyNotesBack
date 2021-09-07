@@ -12,6 +12,9 @@ if (!firebase.apps.length) {
 }
 
 const database = firebase.firestore();
-database.settings({ ignoreUndefinedProperties: true, merge: true });
+database.settings({ 
+  ignoreUndefinedProperties: true,
+  merge: true 
+});
 
 export default database;
